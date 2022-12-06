@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
+  resources :items
   get 'home/index'
   get 'static_pages/home'
   get 'users/new'
   post '/users' => 'users#create'
-  get '/login' => 'session#new'
   get '/profile' => 'users#info'
+  get '/show-all-users' => 'users#show'
+  delete '/delete-user' => 'users#destroy'
+  get '/login' => 'session#new'
   post '/login' => 'session#create'
   get '/logout' => 'session#destroy'
-  get '/show-all-users' => 'users#show'
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

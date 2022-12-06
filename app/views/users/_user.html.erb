@@ -11,7 +11,9 @@
   <td>
     <%= user.user_type %>
   </td>
+  <%if user.id != current_user.id %>
   <td class="">
-    <%= link_to "Delete", logout_path ,class:"btn btn-danger" %>
+    <%= button_to "Delete", delete_user_path(:id => user.id) ,class:"btn btn-danger",method: :delete %>
   </td>
+  <% end %>
 </tr>
