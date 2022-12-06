@@ -11,6 +11,12 @@ class UsersController < ApplicationController
         end
     end
 
+    def destroy
+        @user = User.find_by(id: params[:id])
+        @user.destroy
+        flash[:notice] = "Successfully delete user"
+    end
+
     def info
     end
 
@@ -22,4 +28,5 @@ class UsersController < ApplicationController
         def user_params
             params.require(:user).permit(:email,:name,:password,:user_type)
         end
+        
 end
