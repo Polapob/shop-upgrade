@@ -4,8 +4,8 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :category
       t.boolean :enable
-
       t.timestamps
     end
+    
   end
 end
