@@ -12,7 +12,10 @@ class UsersController < ApplicationController
     end
 
     def info
-    
+    end
+
+    def show 
+        @users = User.all
     end
 
     private

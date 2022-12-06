@@ -1,0 +1,17 @@
+<tr id="<%= dom_id user %>">
+  <td>
+    <%= user.id %>
+  </td>
+  <td>
+    <%= user.name %>
+  </td>
+   <td>
+    <%= user.email %>
+  </td>
+  <td>
+    <%= user.user_type %>
+  </td>
+  <td class="">
+    <%= link_to "Delete", logout_path ,class:"btn btn-danger" %>
+  </td>
+</tr>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/profile' => 'users#info'
   post '/login' => 'session#create'
   get '/logout' => 'session#destroy'
+  get '/show-all-users' => 'users#show'
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
