@@ -1,0 +1,13 @@
+version: '3'
+services:
+  db:
+    image: "postgres"
+    restart: always
+    environment:
+      POSTGRES_USER: "shop-upgrade"
+      POSTGRES_PASSWORD: "shop-upgrade"
+      POSTGRES_DB: "shop-upgrade"
+    ports:
+      - '5432:5432'
+    
+      
