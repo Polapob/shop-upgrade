@@ -4,4 +4,17 @@
   <div class="font-weight-bold h4">Name: <%= current_user.name %></div>
   <div  class="font-weight-bold h4">Email: <%= current_user.email %></div>
   <div  class="font-weight-bold h4">User_type: <%= current_user.user_type%> </div>
+  <h4>Change Password</h4>
+  <%= form_for :change_password ,url: "/reset-password" do |form| %>
+
+  <div class="form-group" style="width:450px">
+    <%= form.label :password, "Password:" %>
+    <%= form.text_field :password,class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :confirm_password, "Confirm_Password:" %>
+    <%= form.text_field :confirm_password ,class:"form-control" %>
+  </div>
+    <%= form.submit "Submit",class:"btn btn-primary" %>
+  <% end %>  
 </div>

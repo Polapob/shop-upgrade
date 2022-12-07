@@ -20,6 +20,20 @@ class UsersController < ApplicationController
     def info
     end
 
+    def reset_password
+        print("Hello")
+        password = change_password_params[:password]
+        confirm_password = change_password_params[:confirm_password]
+        if password != confirm_password 
+            flash[:notice] = "Password and Confirm password mismatch"
+            redirect_to profile_path
+            return 
+        end
+        @user = User.update(current_user.id,:password => password )
+        flash[:notice] = "Successfully Reset Password"
+        redirect_to profile_path
+    end
+
     def show 
         @users = User.all
     end
@@ -27,6 +41,10 @@ class UsersController < ApplicationController
     private
         def user_params
             params.require(:user).permit(:email,:name,:password,:user_type)
+        end
+        
+        def change_password_params
+            params.require(:change_password).permit(:password,:confirm_password)
         end
         
 end

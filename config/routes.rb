@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'market/index'
   resources :items
   get 'home/index'
   get 'static_pages/home'
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   get '/logout' => 'session#destroy'
+  post '/reset-password' => "users#reset_password"
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
