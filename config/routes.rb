@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get '/logout' => 'session#destroy'
   post '/reset-password' => "users#reset_password"
   get '/market/:id', to: 'market#new'
+  get '/market/edit/:id', to: 'market#edit'
   post '/market' => "market#create"
+  patch '/market/:id', to: 'market#edit_market'
   get '/my_inventory' => "market#index"
   delete '/delete-market' => 'market#delete'
   root "home#index"

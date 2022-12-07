@@ -1,5 +1,5 @@
-<%= form_for :market, url: '/market' do |form| %>
-        <h2>Update_Item_for_sale</h2>
+<%= form_for :market, url: "/market/" + params[:id].to_s,method: :patch  do |form| %>
+        <h2>Edit market after created</h2>
         <div class="form-group">
          <%= form.label :price %>
          <%= form.number_field :price,class:"form-control",placeholder:"Price", required: true %>
@@ -10,7 +10,7 @@
         </div>
 
         <%= form.hidden_field :user_id, value: current_user.id %>
-        <%= form.hidden_field :item_id, value: @item.id %>
+        <%= form.hidden_field :item_id, value: Market.find(params[:id]).item_id %>
         
         <%=  submit_tag("Put for sale", :class => "btn btn-primary") %>
 <% end %>

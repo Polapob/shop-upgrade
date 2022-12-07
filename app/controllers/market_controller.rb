@@ -13,7 +13,33 @@ class MarketController < ApplicationController
         format.json { head :no_content }
       end
   end 
+
+  def edit_market
+    if Market.where(id:params[:id]).exists?
+      @market = Market.find(params[:id])
+      @market.price = market_params[:price]
+      @market.stock = market_params[:stock]
+
+      respond_to do |format|
+        if @market.save
+          format.html { redirect_to my_inventory_path , notice: "Item was successfully created." }
+          format.json { render :show, status: :created, location: @market }
+        else
+          format.html { render '/market/edit/' + params[:id]  , status: :unprocessable_entity }
+          format.json { render json: @item.errors, status: :unprocessable_entity }
+        end
+      end  
+      return 
+    end 
+    respond_to do |format|
+      format.html { render '/market/' + params[:id]  , notice: "You need to create market before edit" }
+      format.json { render json: @item.errors, status: :unprocessable_entity }
+    end
+  end 
   
+  def edit
+  end 
+
   def create 
     @market = Market.new(market_params)
     respond_to do |format|

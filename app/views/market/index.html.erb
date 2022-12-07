@@ -32,7 +32,7 @@
       <td><%= Market.where(item_id: item.id).exists? %></td>
        <% if Market.where(item_id: item.id).exists? %> 
        <td>
-        <%= link_to "Edit" ,'/market/' + item.id.to_s ,class:"btn btn-primary" %>
+        <%= link_to "Edit" ,'/market/edit/' + item.id.to_s ,class:"btn btn-primary" %>
        </td>
         <td> <%= button_to "Remove from the market",{:controller => "market", :action => "delete", :item_id => item.id } , :method=>:delete, class: "btn btn-danger"  %></td>
         <% else %>
