@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   get '/logout' => 'session#destroy'
   post '/reset-password' => "users#reset_password"
   get '/market/:id', to: 'market#new'
+  post '/market' => "market#create"
+  get '/my_inventory' => "market#index"
+  delete '/delete-market' => 'market#delete'
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

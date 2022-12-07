@@ -34,4 +34,6 @@
   <div class = "form-group">
     <%= form.submit class:"btn btn-primary" %>
   </div>
+  
+  <%= form.hidden_field :user_id, value: current_user.id  %>
 <% end %>
