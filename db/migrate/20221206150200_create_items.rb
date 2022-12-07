@@ -4,6 +4,7 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :category
       t.boolean :enable
+      t.belongs_to :user, foreign_key: true 
       t.timestamps
     end
     

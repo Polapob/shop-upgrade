@@ -6,7 +6,6 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.datetime :confirmed_at
       t.string :password_digest
       t.integer :user_type
-
       t.timestamps
     end
   end

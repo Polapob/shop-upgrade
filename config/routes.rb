@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post '/login' => 'session#create'
   get '/logout' => 'session#destroy'
   post '/reset-password' => "users#reset_password"
+  get '/market/:id', to: 'market#new'
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

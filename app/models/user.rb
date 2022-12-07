@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
     has_many :markets
+    has_many :items
     before_save :downcase_email
     enum user_type: [:admin,:seller,:buyer]
     validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, presence: true, uniqueness: true
