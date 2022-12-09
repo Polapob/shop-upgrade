@@ -4,8 +4,9 @@ WORKDIR /app
 
 RUN apk upgrade && apk update
 RUN apk add \
-	build-base \
-    postgresql-dev
+    build-base \
+    postgresql-dev \
+    tzdata
 
 COPY Gemfile* .
 RUN bundle install

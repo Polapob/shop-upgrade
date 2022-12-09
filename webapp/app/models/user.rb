@@ -2,6 +2,8 @@ class User < ApplicationRecord
     has_secure_password
     has_many :markets
     has_many :items
+    has_many :inventories, foreign_key: "buyer_id", primary_key:"id"
+
     before_save :downcase_email
     enum user_type: [:admin,:seller,:buyer]
     validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, presence: true, uniqueness: true

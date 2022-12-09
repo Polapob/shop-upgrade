@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_07_065739) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_09_061109) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,23 +52,33 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_07_065739) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "inventories", force: :cascade do |t|
+    t.float "price"
+    t.integer "qty"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "item_id"
+    t.integer "buyer_id"
+    t.integer "seller_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "category"
     t.boolean "enable"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "markets", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "item_id"
     t.float "price"
     t.integer "stock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.bigint "item_id", null: false
     t.index ["item_id"], name: "index_markets_on_item_id"
     t.index ["user_id"], name: "index_markets_on_user_id"
   end
@@ -85,6 +95,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_07_065739) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "inventories", "items", column: "id"
+  add_foreign_key "inventories", "users", column: "buyer_id"
+  add_foreign_key "inventories", "users", column: "seller_id"
   add_foreign_key "items", "users"
   add_foreign_key "markets", "items"
   add_foreign_key "markets", "users"

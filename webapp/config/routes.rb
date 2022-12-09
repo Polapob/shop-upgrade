@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :inventories
   get 'market/index'
   resources :items
   get 'home/index'
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
   post '/market' => "market#create"
   patch '/market/:id', to: 'market#edit_market'
   get '/my_inventory' => "market#index"
+  get '/my_market' => "market#showAll"
+  post '/market/buy' => "market#buy"
   delete '/delete-market' => 'market#delete'
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
