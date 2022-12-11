@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get '/my_market' => "market#showAll"
   post '/market/buy' => "market#buy"
   delete '/delete-market' => 'market#delete'
+  get '/sale_history' => 'history#sale'
+  get '/purchase_history' => 'history#purchase'
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

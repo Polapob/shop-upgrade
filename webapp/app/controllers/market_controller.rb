@@ -37,7 +37,7 @@ class MarketController < ApplicationController
      # TODO Reduce number of the stock
     respond_to do |format|
       if @inventory.save 
-        format.html { redirect_to inventories_path , notice: "You successfully bought the item." }
+        format.html { redirect_to purchase_history_path, notice: "You successfully bought the item." }
         format.json { render :show, status: :created, location: @market }
       else
         format.html { render my_market_path , status: :unprocessable_entity }

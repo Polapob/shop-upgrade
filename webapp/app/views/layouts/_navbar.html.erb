@@ -32,9 +32,15 @@
             <li class="nav-item">
               <%= link_to "My_Market",my_market_path,class:"nav-link" %>
             </li>
+            <li class="nav-item">
+              <%= link_to "Purchase_history",purchase_history_path,class:"nav-link" %>
+            </li>
           <% elsif current_user.user_type == "seller" %>
             <li class="nav-item">
               <%= link_to "My_Inventory",my_inventory_path,class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sale_history",sale_history_path,class:"nav-link" %>
             </li>
           <%end %>
         </ul>
