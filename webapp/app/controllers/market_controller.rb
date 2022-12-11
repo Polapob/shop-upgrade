@@ -28,10 +28,15 @@ class MarketController < ApplicationController
       redirect_to my_market_path
       return 
      else 
-     @inventory = Inventory.new(buyer_id:current_user.id,seller_id:buy_market_params[:seller_id],qty:buy_market_params[:qty].to_i,item_id:buy_market_params[:item_id])
+    @market = Market.find_by(item_id: buy_market_params[:item_id])
+    print("buy market params =",buy_market_params)
+    @inventory = Inventory.new(buyer_id:current_user.id,seller_id:buy_market_params[:seller_id],qty:buy_market_params[:qty].to_i,item_id:buy_market_params[:item_id],price:@market.price)
+    @market.stock -= buy_market_params[:qty].to_i;
+    @market.save;
+    print("Save market changed!");
      # TODO Reduce number of the stock
-     respond_to do |format|
-      if @inventory.save
+    respond_to do |format|
+      if @inventory.save 
         format.html { redirect_to inventories_path , notice: "You successfully bought the item." }
         format.json { render :show, status: :created, location: @market }
       else

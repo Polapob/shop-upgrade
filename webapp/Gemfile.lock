@@ -110,6 +110,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jquery-datatables (1.10.20)
     jsbundling-rails (1.0.3)
       railties (>= 6.0.0)
     loofah (2.19.0)
@@ -234,6 +235,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
+  jquery-datatables (~> 1.10)
   jsbundling-rails (~> 1.0)
   pg (~> 1.1)
   puma (~> 5.0)
