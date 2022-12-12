@@ -1,7 +1,5 @@
 FROM ruby:3.0.0-alpine
 
-WORKDIR /app
-
 RUN apk upgrade && apk update
 RUN apk add \
     build-base \
