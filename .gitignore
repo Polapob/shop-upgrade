@@ -1,4 +1,4 @@
-config
-log
-storage
-tmp
+./config
+./log
+./storage
+./tmp
