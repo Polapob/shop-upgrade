@@ -1,4 +1,7 @@
 class MarketController < ApplicationController
+  before_action :no_seller_entry, only: [:showAll, :buy]
+  before_action :no_buyer_entry, only: [:index, :delete, :edit_market, :create, :new]
+
   def index
       @list_items = Item.where(user_id:current_user.id)
   end
@@ -19,11 +22,15 @@ class MarketController < ApplicationController
   end 
 
   def buy
-
+      if session[:user_type] != "buyer"
+        flash[:notice] = "You are not buyer"
+        return
+      end
+      
       if buy_market_params[:qty].to_i < 0
         flash[:notice] = "You cannot pass negative value in Qty"
         redirect_to my_market_path
-      return 
+        return 
       elsif buy_market_params[:qty].to_i > Market.find_by(item_id: buy_market_params[:item_id]).stock
         flash[:notice] = "You cannot buy item more than the number of stock."
         redirect_to my_market_path

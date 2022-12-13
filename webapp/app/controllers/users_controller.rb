@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    before_action :admin_only, only: [:destroy]
+
     def create
         @user = User.new(user_params)
         if @user.save

@@ -1,4 +1,7 @@
 class HistoryController < ApplicationController
+  before_action :no_buyer_entry, only: [:get_top_seller, :sale]
+  before_action :no_seller_entry, only: [:purchase]
+
   def sale
     @history = Inventory.where(seller_id:current_user.id)
   end
@@ -13,4 +16,5 @@ class HistoryController < ApplicationController
     .group("users.email", "users.name")
     .order("total_price DESC")
   end
+
 end

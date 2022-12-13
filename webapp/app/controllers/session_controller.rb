@@ -1,4 +1,6 @@
 class SessionController < ApplicationController
+  skip_before_action :auth, only: [:new, :create]
+
   def new
   end
 
@@ -6,6 +8,7 @@ class SessionController < ApplicationController
     user = User.find_by(email:params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      session[:user_type] = user.user_type
       flash[:notice] = "Login successful"
       redirect_to "/"
     else
@@ -16,6 +19,7 @@ class SessionController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    session[:user_type] = nil
     flash[:notice]="Logout successful"
     redirect_to '/'
   end
