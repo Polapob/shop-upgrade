@@ -1,0 +1,33 @@
+<style>
+.top-seller-container {
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+}
+.top-seller-card {
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+
+	border-style:solid;
+	width:500px;
+	height:80px;
+	margin:10px;
+}
+.top-seller-text {
+	text-align:center;
+	font-size:20px;
+}
+</style>
+
+<div style="display:flex;flex-direction:column;align-items:center;padding:20px">
+	<h1>Top Seller</h1>
+	<div class="top-seller-container">
+		<% @sellers.each do |seller|  %>
+			<div class="top-seller-card">
+				<div class="top-seller-text"><%= seller.name %></div>
+				<div class="top-seller-text">total price : <%= seller.total_price %></div>
+			</div>
+		<% end %>
+	</div>
+</div>

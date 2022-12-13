@@ -19,32 +19,33 @@ class MarketController < ApplicationController
   end 
 
   def buy
-     if buy_market_params[:qty].to_i < 0
-      flash[:notice] = "You cannot pass negative value in Qty"
-      redirect_to my_market_path
+
+      if buy_market_params[:qty].to_i < 0
+        flash[:notice] = "You cannot pass negative value in Qty"
+        redirect_to my_market_path
       return 
-     elsif buy_market_params[:qty].to_i > Market.find_by(item_id: buy_market_params[:item_id]).stock
-      flash[:notice] = "You cannot buy item more than the number of stock."
-      redirect_to my_market_path
-      return 
-     else 
-    @market = Market.find_by(item_id: buy_market_params[:item_id])
-    print("buy market params =",buy_market_params)
-    @inventory = Inventory.new(buyer_id:current_user.id,seller_id:buy_market_params[:seller_id],qty:buy_market_params[:qty].to_i,item_id:buy_market_params[:item_id],price:@market.price)
-    @market.stock -= buy_market_params[:qty].to_i;
-    @market.save;
-    print("Save market changed!");
-     # TODO Reduce number of the stock
-    respond_to do |format|
-      if @inventory.save 
-        format.html { redirect_to purchase_history_path, notice: "You successfully bought the item." }
-        format.json { render :show, status: :created, location: @market }
-      else
-        format.html { render my_market_path , status: :unprocessable_entity }
-        format.json { render json: @inventories.errors, status: :unprocessable_entity }
+      elsif buy_market_params[:qty].to_i > Market.find_by(item_id: buy_market_params[:item_id]).stock
+        flash[:notice] = "You cannot buy item more than the number of stock."
+        redirect_to my_market_path
+        return 
+      else 
+        @market = Market.find_by(item_id: buy_market_params[:item_id])
+        print("buy market params =",buy_market_params)
+        @inventory = Inventory.new(buyer_id:current_user.id,seller_id:buy_market_params[:seller_id],qty:buy_market_params[:qty].to_i,item_id:buy_market_params[:item_id],price:@market.price)
+        @market.stock -= buy_market_params[:qty].to_i;
+        @market.save;
+        print("Save market changed!");
+        # TODO Reduce number of the stock
+        respond_to do |format|
+        if @inventory.save 
+          format.html { redirect_to purchase_history_path, notice: "You successfully bought the item." }
+          format.json { render :show, status: :created, location: @market }
+        else
+          format.html { render my_market_path , status: :unprocessable_entity }
+          format.json { render json: @inventories.errors, status: :unprocessable_entity }
+        end
       end
     end
-     end
   end 
 
   def edit_market

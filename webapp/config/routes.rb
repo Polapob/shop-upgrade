@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   delete '/delete-market' => 'market#delete'
   get '/sale_history' => 'history#sale'
   get '/purchase_history' => 'history#purchase'
+  get 'top_seller' => 'history#get_top_seller'
   root 'main#main'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
