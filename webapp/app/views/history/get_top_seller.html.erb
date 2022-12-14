@@ -18,7 +18,24 @@
 	text-align:center;
 	font-size:20px;
 }
+.head {
+	display:flex;
+	justify-content:right;
+}
 </style>
+
+
+<div class="head">
+<%= form_with url: "/top_seller", method: :get do |form| %>
+    <%= form.hidden_field :start_date%> start date:
+    <%= form.date_field :start_date, :required => true %>
+    &ensp; &ensp; &ensp; &ensp; &ensp;
+    <%= form.hidden_field :end_date%> end date:
+    <%= form.date_field :end_date, :required => true %>
+    &ensp; &ensp; &ensp; &ensp; &ensp;
+    <%= form.submit "search", class:"btn btn-info" %> 
+<% end %>
+</div>
 
 <div style="display:flex;flex-direction:column;align-items:center;padding:20px">
 	<h1>Top Seller</h1>
