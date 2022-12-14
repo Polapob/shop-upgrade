@@ -1,0 +1,23 @@
+admin:
+  email: 'jetnipit54@gmail.com'
+  name: 'Jet K'
+  password_digest: <%= BCrypt::Password.create("123") %>
+  user_type: "admin"
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
+
+seller:
+  email: 'somchai@uiuc.alumni'
+  name: 'Somchai SPJ'
+  password_digest: <%= BCrypt::Password.create("123") %>
+  user_type: "seller"
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
+
+buyer:
+  email: 'nattee@chula.ac.th'
+  name: 'Deawkho Chin'
+  password_digest: <%= BCrypt::Password.create("123") %>
+  user_type: "buyer"
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
