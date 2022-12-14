@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
-  before_action :admin_only, only: [:index, :new]
-  before_action :no_buyer_entry, only: [:create, :show, :update, :destroy]
+  before_action :admin_only, only: [:index]
+  before_action :no_buyer_entry, only: [:new, :create, :show, :update, :destroy]
 
   # GET /items or /items.json
   def index
