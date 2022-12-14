@@ -24,15 +24,19 @@ class UsersController < ApplicationController
     end
 
     def reset_password
-        print("Hello")
         password = change_password_params[:password]
         confirm_password = change_password_params[:confirm_password]
+        if password.length <= 3
+            flash[:notice] = "Password length must be greater than 3!"
+            redirect_to profile_path
+            return
+        end
         if password != confirm_password 
-            flash[:notice] = "Password and Confirm password mismatch"
+            flash[:notice] = "Password and Confirm password mismatch!"
             redirect_to profile_path
             return 
         end
-        @user = User.update(current_user.id,:password => password )
+        @user = User.update(session[:user_id],:password => password )
         flash[:notice] = "Successfully Reset Password"
         redirect_to profile_path
     end
