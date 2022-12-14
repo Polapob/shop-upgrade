@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :auth
+  skip_before_action :auth, only: [:current_user, :is_user_login]
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]

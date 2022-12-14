@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :auth, only: [:create]
+    skip_before_action :auth, only: [:create, :new]
     before_action :admin_only, only: [:destroy]
 
     def create
