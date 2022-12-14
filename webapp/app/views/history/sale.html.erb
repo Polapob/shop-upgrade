@@ -1,0 +1,30 @@
+<h1>History#sale</h1>
+<p>Find me in app/views/history/sale.html.erb</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Item ID</th>
+      <th scope="col">Buyer ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Purchase At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @history.each do |data| %>
+      <tr>
+        <td><%= data.item_id  %></td>
+        <td><%= data.buyer_id %></div>
+        <td><%= Item.find(data.item_id).name %></td>
+        <td><%= Item.find(data.item_id).category %></td>
+        <td><%= data.price %></td>
+        <td><%= data.qty %></td>
+        <td><%= data.qty * data.price %></td>
+        <td><%= data.created_at.localtime.strftime("%d/%m/%Y %I:%M %p UTC") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

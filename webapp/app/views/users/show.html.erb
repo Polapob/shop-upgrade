@@ -1,0 +1,17 @@
+<h1>Show List of Users</h1>
+<table id="users" class = "table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col">User ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope= "col">User_Type</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <%= render user %>
+    <% end %>
+  </tbody>
+</table>

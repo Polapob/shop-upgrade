@@ -1,0 +1,95 @@
+<style>
+.page {
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	background-color:rgba(64, 201, 122, 0.86);
+	max-width:800px;
+	padding:25px;
+}
+body {
+	background-image:url("https://a.cdn-hotels.com/gdcs/production76/d1116/1e97b4de-e17e-4f10-adac-e83383ce020d.jpg");
+	object-fit:fill;
+}
+.page-container {
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	padding:40px;
+}
+.page-item {
+	margin:15px;
+}
+</style>
+
+<div style="display:flex;flex-direction:column;align-items:center;">
+	<div class="page">
+		<div>
+			<p style="font-family:serif;font-size:26px;">Hi <%= @user_type %></p>
+		</div>
+		<div>
+			<p style="font-family:serif;font-size:56px;">Welcome to Shop ver. Upgrade</p>
+		</div>
+		<div class="page-container">
+			<% if @user_type == "admin" then %>
+				<div class="page-item">
+					<%= button_to "Show Users",
+					{:controller => "users", :action => "show" } ,
+					:method=>:get, class: "btn btn-primary btn-lg", style: "width:400px;height:80px;" %>
+				</div>
+				<div class="page-item">
+					<%= button_to "Goto Market",
+					{:controller => "market", :action => "showAll" } ,
+					:method=>:get, class: "btn btn-primary btn-lg", style: "width:400px;height:80px;" %>
+				</div>
+				<div class="page-item">
+					<%= button_to "Goto Inventory",
+					{:controller => "market", :action => "index" } ,
+					:method=>:get, class: "btn btn-primary btn-lg", style: "width:400px;height:80px;" %>
+				</div>
+				<div class="page-item">
+					<%= button_to "Purchase History",
+					{:controller => "history", :action => "purchase" } ,
+					:method=>:get, class: "btn btn-primary btn-lg", style: "width:400px;height:80px;" %>
+				</div>
+				<div class="page-item">
+					<%= button_to "Sale History",
+					{:controller => "history", :action => "sale" } ,
+					:method=>:get, class: "btn btn-primary btn-lg", style: "width:400px;height:80px;" %>
+				</div>
+				<div class="page-item">
+					<%= button_to "Top Seller",
+					{:controller => "history", :action => "get_top_seller" } ,
+					:method=>:get, class: "btn btn-primary btn-lg", style: "width:400px;height:80px;" %>
+				</div>
+			<% elsif @user_type == "buyer" %>
+				<div class="page-item">
+					<%= button_to "Goto Market",
+					{:controller => "market", :action => "showAll" } ,
+					:method=>:get, class: "btn btn-primary btn-lg", style: "width:400px;height:80px;" %>
+				</div>
+				<div class="page-item">
+					<%= button_to "Purchase History",
+					{:controller => "history", :action => "purchase" } ,
+					:method=>:get, class: "btn btn-primary btn-lg", style: "width:400px;height:80px;" %>
+				</div>
+			<% else %>
+				<div class="page-item">
+					<%= button_to "Goto Inventory",
+					{:controller => "market", :action => "index" } ,
+					:method=>:get, class: "btn btn-primary btn-lg", style: "width:400px;height:80px;" %>
+				</div>
+				<div class="page-item">
+					<%= button_to "Sale History",
+					{:controller => "history", :action => "sale" } ,
+					:method=>:get, class: "btn btn-primary btn-lg", style: "width:400px;height:80px;" %>
+				</div>
+				<div class="page-item">
+					<%= button_to "Top Seller",
+					{:controller => "history", :action => "get_top_seller" } ,
+					:method=>:get, class: "btn btn-primary btn-lg", style: "width:400px;height:80px;" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
