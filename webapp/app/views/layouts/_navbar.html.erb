@@ -22,6 +22,9 @@
             <%= link_to "Logout",logout_path,class:"btn btn-danger" %>
           </li>
           <li class="nav-item">
+            <%= link_to "home", root_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item">
             <%= link_to "Profile",profile_path,class:"nav-link" %>
           </li>
           <% if current_user.user_type == "admin" %>
