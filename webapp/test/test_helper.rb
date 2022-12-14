@@ -8,7 +8,5 @@ class ActiveSupport::TestCase
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
-  Capybara.server_host = "0.0.0.0"
-  Capybara.app_host = "http://#{ENV.fetch("HOSTNAME")}:#{Capybara.server_port}"
   # Add more helper methods to be used by all tests here...
 end
