@@ -3,7 +3,7 @@ class MarketController < ApplicationController
   before_action :no_buyer_entry, only: [:index, :delete, :edit_market, :create, :new]
 
   def index
-      @list_items = Item.where(user_id:current_user.id)
+      @list_items = Item.where(user_id:session[:user_type])
   end
 
   def showAll
