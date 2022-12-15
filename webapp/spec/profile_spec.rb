@@ -1,14 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Profile', type: :feature do
-
-	scenario 'breach into profile page without session' do
+	scenario 'visit profile page without session' do
 		visit '/profile'
 
 		expect(page).to have_content 'Login Required'
 	end
 
-	scenario 'showing admin profile' do
+	scenario 'visit admin profile' do
 		visit '/login'
 
     fill_in 'email', with: 'jetnipit54@gmail.com'
@@ -23,7 +22,7 @@ RSpec.describe 'Profile', type: :feature do
     expect(page).to have_content 'User_type: admin'
 	end
 
-	scenario 'showing seller profile' do
+	scenario 'visit seller profile' do
 		visit '/login'
 
     fill_in 'email', with: 'somchai@uiuc.alumni'
@@ -38,7 +37,7 @@ RSpec.describe 'Profile', type: :feature do
     expect(page).to have_content 'User_type: seller'
 	end
 
-	scenario 'showing buyer profile' do
+	scenario 'visit buyer profile' do
 		visit '/login'
 
     fill_in 'email', with: 'nattee@chula.ac.th'
@@ -53,7 +52,7 @@ RSpec.describe 'Profile', type: :feature do
     expect(page).to have_content 'User_type: buyer'
 	end
 
-  scenario 'change password' do
+  scenario 'change password as buyer' do
     visit '/login'
 
     fill_in 'email', with: 'nattee@chula.ac.th'
