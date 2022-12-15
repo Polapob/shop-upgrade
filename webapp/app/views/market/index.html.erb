@@ -15,7 +15,13 @@
     <% @list_items.each do |item| %>
   <tr>
       <td> <%= item.name %></td>
-      <td><%= image_tag(item.image,style:"width:100px;height:100px") %></td>
+      <td>
+      <% if item.image.present? %>
+        <%= image_tag(item.image,style:"width:100px;height:100px") %>
+      <% else %>
+        <%= "No Image" %>
+      <% end %>
+      </td>
       <td> <% if item.enable && Market.where(item_id: item.id).exists?  %>
         <%= Market.find_by(item_id: item.id).stock  %>
       <% else %>
