@@ -1,0 +1,31 @@
+sword:
+  name: 'Bastard Sword'
+  category: 'weapon'
+  user: seller
+  enable: true
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
+
+book:
+  name: 'Crime & Punishment'
+  category: 'literature'
+  user: seller
+  enable: true
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
+
+gadget:
+  name: 'Korea King'
+  category: 'wok'
+  user: seller
+  enable: false
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
+
+red_pill:
+  name: 'Red Pill'
+  category: 'Enlightener'
+  user: admin
+  enable: false
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
