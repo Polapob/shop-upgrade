@@ -38,9 +38,9 @@
              <%= link_to "Edit Item" ,edit_item_path(item) ,class:"btn btn-primary" %>
             </td>
             <td>
-                <% if item.enable %>
-              <%= link_to "Add to market" ,'/market/' + item.id.to_s ,class:"btn btn-primary" %>
-                <% end %>
+              <% if item.enable %>
+                <%= link_to "Add to market" ,'/market/' + item.id.to_s ,class:"btn btn-primary" %>
+              <% end %>
             </td>
         <% end %>
         </tr>
