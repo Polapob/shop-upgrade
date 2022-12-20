@@ -11,10 +11,8 @@ class MarketController < ApplicationController
   end
 
   def delete
-      print("params =", params[:item_id])
       @market = Market.where(item_id: params[:item_id]).first
       @market.destroy
-      print(@market)
       respond_to do |format|
         format.html { redirect_to my_inventory_path, notice: "Item was successfully remove from the market." }
         format.json { head :no_content }

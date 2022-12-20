@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Main', type: :feature do
+RSpec.describe 'Inventory', type: :feature do
   scenario 'visit inventory as Mr. Somchai' do
     visit '/login'
 
