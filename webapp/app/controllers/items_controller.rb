@@ -40,6 +40,13 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1 or /items/1.json
   def update
     respond_to do |format|
+      if item_params[:lock_version].to_i != Item.find(@item.id).lock_version
+        redirect_to '/item/' + @item.id.to_s + '/edit', notice: 'lock version no match'
+        return
+      end
+
+      item_params[:lock_version] = @item.lock_version+1
+
       if @item.update(item_params)
         format.html { redirect_to item_url(@item), notice: "Item was successfully updated." }
         format.json { render :show, status: :ok, location: @item }
@@ -68,6 +75,6 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:name, :category, :enable,:image,:user_id)
+      params.require(:item).permit(:name, :category, :enable,:image,:user_id,:lock_version)
     end
 end
