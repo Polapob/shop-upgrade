@@ -1,0 +1,15 @@
+market_1:
+  user: seller
+  item: sword
+  price: 100
+  stock: 20
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
+
+market_2:
+  user: seller
+  item: book
+  price: 40
+  stock: 5
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>

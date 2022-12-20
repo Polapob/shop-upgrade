@@ -1,10 +1,15 @@
 <div class="d-flex justify-content-center align-items-center">
 <div class="card d-flex flex-column justify-content-center align-items-center" style="width: 32rem;">
   <div class="card-body d-flex flex-column justify-content-center align-items-center">
-  <%= link_to image_tag(@item.image,style:"width:300px;height:300px"), @item.image %>
+    <% if @item.image.present? %>
+      <%= link_to image_tag(@item.image,style:"width:300px;height:300px"), @item.image %>
+    <% else %>
+      <%= "No Image" %>
+    <% end %>
     <h5 class="card-title mt-4">Name: <%= @item.name %></h5>
     <h5 class="card-title">Category: <%= @item.category %></h5>
-    <h5 class="card-title">Enable To Buy: <% if @item.enable %>
+    <h5 class="card-title">Enable To Buy: 
+    <% if @item.enable %>
       True
     <% else  %>
       False 

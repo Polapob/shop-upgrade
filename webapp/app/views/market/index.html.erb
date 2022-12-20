@@ -1,6 +1,4 @@
 <h1>My Inventory</h1>
-<p>Find me in app/views/market/index.html.erb</p>
-
 <div>
     <div>Show List of Items from Seller</div>
     <table class="table table-striped">
@@ -17,7 +15,13 @@
     <% @list_items.each do |item| %>
   <tr>
       <td> <%= item.name %></td>
-      <td><%= image_tag(item.image,style:"width:100px;height:100px") %></td>
+      <td>
+      <% if item.image.present? %>
+        <%= image_tag(item.image,style:"width:100px;height:100px") %>
+      <% else %>
+        <%= "No Image" %>
+      <% end %>
+      </td>
       <td> <% if item.enable && Market.where(item_id: item.id).exists?  %>
         <%= Market.find_by(item_id: item.id).stock  %>
       <% else %>
@@ -40,9 +44,9 @@
              <%= link_to "Edit Item" ,edit_item_path(item) ,class:"btn btn-primary" %>
             </td>
             <td>
-                <% if item.enable %>
-              <%= link_to "Add to market" ,'/market/' + item.id.to_s ,class:"btn btn-primary" %>
-                <% end %>
+              <% if item.enable %>
+                <%= link_to "Add to market" ,'/market/' + item.id.to_s ,class:"btn btn-primary" %>
+              <% end %>
             </td>
         <% end %>
         </tr>

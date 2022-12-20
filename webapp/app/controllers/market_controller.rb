@@ -3,7 +3,7 @@ class MarketController < ApplicationController
   before_action :no_buyer_entry, only: [:index, :delete, :edit_market, :create, :new]
 
   def index
-      @list_items = Item.where(user_id:current_user.id)
+      @list_items = Item.where(user_id:session[:user_id])
   end
 
   def showAll
@@ -11,10 +11,8 @@ class MarketController < ApplicationController
   end
 
   def delete
-      print("params =", params[:item_id])
       @market = Market.where(item_id: params[:item_id]).first
       @market.destroy
-      print(@market)
       respond_to do |format|
         format.html { redirect_to my_inventory_path, notice: "Item was successfully remove from the market." }
         format.json { head :no_content }
@@ -24,6 +22,12 @@ class MarketController < ApplicationController
   def buy
       if session[:user_type] != "buyer"
         flash[:notice] = "You are not buyer"
+        return
+      end
+
+      if !buy_market_params[:qty] || buy_market_params[:qty] == "" then
+        flash[:notice] = "You need to insert positive quantity."
+        redirect_to my_market_path
         return
       end
       
@@ -37,11 +41,9 @@ class MarketController < ApplicationController
         return 
       else 
         @market = Market.find_by(item_id: buy_market_params[:item_id])
-        print("buy market params =",buy_market_params)
         @inventory = Inventory.new(buyer_id:current_user.id,seller_id:buy_market_params[:seller_id],qty:buy_market_params[:qty].to_i,item_id:buy_market_params[:item_id],price:@market.price)
         @market.stock -= buy_market_params[:qty].to_i;
         @market.save;
-        print("Save market changed!");
         # TODO Reduce number of the stock
         respond_to do |format|
         if @inventory.save 
@@ -56,8 +58,8 @@ class MarketController < ApplicationController
   end 
 
   def edit_market
-    if Market.where(id:params[:id]).exists?
-      @market = Market.find(params[:id])
+    if Market.where(item_id: market_params[:item_id]).exists?
+      @market = Market.where(item_id: market_params[:item_id]).first
       @market.price = market_params[:price]
       @market.stock = market_params[:stock]
 

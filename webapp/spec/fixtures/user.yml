@@ -16,7 +16,7 @@ seller:
 
 buyer:
   email: 'nattee@chula.ac.th'
-  name: 'Deawkho Chin'
+  name: 'Nattee NN'
   password_digest: <%= BCrypt::Password.create("123") %>
   user_type: "buyer"
   created_at: <%= DateTime.now %>

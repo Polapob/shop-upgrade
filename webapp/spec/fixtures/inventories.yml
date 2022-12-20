@@ -1,0 +1,26 @@
+inventory_1:
+  buyer: buyer
+  seller: seller
+  item: sword
+  price: 200
+  qty: 5
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
+
+inventory_2:
+  buyer: buyer
+  seller: seller
+  item: book
+  price: 10
+  qty: 5
+  created_at: <%= DateTime.new(2001,2,3) %>
+  updated_at: <%= DateTime.now %>
+
+inventory_3:
+  buyer: buyer
+  seller: admin
+  item: red_pill
+  price: 10000
+  qty: 1
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>

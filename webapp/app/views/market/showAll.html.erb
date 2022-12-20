@@ -1,6 +1,4 @@
-<div>
-  Show all item list in the market
-</div>
+<h1>Market</h1>
 <table id = "marketMock" class="table table-striped display">
   <thead>
     <tr>
@@ -18,7 +16,11 @@
       <tr>
         <td> <%= market.item_id %></td>
         <td> <%= Item.find(market.item_id).name%></td>
-        <td><%= image_tag(Item.find(market.item_id).image,style:"width:100px;height:100px") %></td>
+        <td>
+        <% if !Item.find(market.item_id).image %>
+          <%= image_tag(Item.find(market.item_id).image,style:"width:100px;height:100px") %>
+        <% end %>
+        </td>
         <td> <%= market.stock %></td>
         <td> <%= market.price %></td>
         <%= form_for :market, url: "/market/buy",method: :post  do |form| %>

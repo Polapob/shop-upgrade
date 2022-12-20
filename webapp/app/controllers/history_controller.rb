@@ -3,11 +3,11 @@ class HistoryController < ApplicationController
   before_action :no_seller_entry, only: [:purchase]
 
   def sale
-    @history = Inventory.where(seller_id:current_user.id)
+    @history = Inventory.where(seller_id:session[:user_id])
   end
 
   def purchase
-    @history = Inventory.where(buyer_id:current_user.id)
+    @history = Inventory.where(buyer_id:session[:user_id])
   end
 
   def get_top_seller
