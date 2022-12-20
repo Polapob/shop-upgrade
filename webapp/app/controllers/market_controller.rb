@@ -60,8 +60,8 @@ class MarketController < ApplicationController
   end 
 
   def edit_market
-    if Market.where(id:params[:id]).exists?
-      @market = Market.find(params[:id])
+    if Market.where(item_id: market_params[:item_id]).exists?
+      @market = Market.where(item_id: market_params[:item_id]).first
       @market.price = market_params[:price]
       @market.stock = market_params[:stock]
 

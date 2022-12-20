@@ -66,7 +66,7 @@ RSpec.configure do |config|
 
   # truncate db after testing
   config.after(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
+    #DatabaseCleaner.clean_with(:truncation)
   end
 
 end
